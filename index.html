@@ -7,6 +7,329 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="profile.jpg" />
   <meta name="description" content="Yash (Yashas Chandra Bathini) — Secret Agent building software applications with AI & ML integration. Portfolio, projects, skills and contact." />
+  <style>
+    /* --- Terminal Intro Overlay --- */
+    #terminal-overlay {
+      position: fixed;
+      inset: 0;
+      background: #020a0e;
+      color: #00ffcc;
+      font-family: "Source Code Pro", monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: left;
+      font-size: 15px;
+      padding: 20px;
+      z-index: 9999;
+      overflow: hidden;
+    }
+    #terminal-text {
+      max-width: 700px;
+      width: 90%;
+      white-space: pre-wrap;
+      line-height: 1.4;
+    }
+    .blink {
+      animation: blink 1s steps(2, start) infinite;
+    }
+    @keyframes blink { to { visibility: hidden; } }
+    #enter-btn {
+      margin-top: 20px;
+      padding: 10px 16px;
+      border: 1px solid #00ffcc;
+      border-radius: 6px;
+      background: transparent;
+      color: #00ffcc;
+      font-weight: bold;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.8s ease-in;
+    }
+    #enter-btn:hover {
+      background: rgba(0,255,204,0.1);
+    }
+    body.loaded #terminal-overlay {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Secret Agent Intro Terminal -->
+  <div id="terminal-overlay">
+    <div id="terminal-text"></div>
+    <button id="enter-btn">ENTER MISSION</button>
+  </div>
+
+  <div class="bg-scan"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="profile.jpg" alt="Yash" class="avatar" />
+      <div>
+        <div class="name">Yashas “Yash” Chandra Bathini</div>
+        <div class="subtitle">Secret Agent • Software & AI/ML Operative</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="#dossier">Dossiers</a>
+      <a href="#skills">Skills</a>
+      <a href="#missions">Missions</a>
+      <a href="#contact">Contact</a>
+      <a class="btn-resume" href="YashasResumeSep2025.pdf" target="_blank">Resume</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1 class="agent-title">Operational Codename: <span class="codename">OBSIDIAN</span></h1>
+        <h2 class="typed">I design covert software systems — <span id="typed">AI-powered. ML-enabled. Mission-ready.</span></h2>
+
+        <p class="lead">
+          I build stealthy, high-impact software applications that integrate Artificial Intelligence and Machine Learning to automate decisions, detect anomalies, and deliver measurable outcomes.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta" href="#missions">View Mission Dossiers</a>
+          <a class="cta ghost" href="#contact">Brief the Agent</a>
+        </div>
+
+        <div class="stats">
+          <div><strong>4.0</strong><span>GPA (Master’s, UNT)</span></div>
+          <div><strong>Azure</strong><span>Cloud Expertise</span></div>
+          <div><strong>React / Flask</strong><span>Full-Stack AI Systems</span></div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="device">
+          <div class="device-screen">
+            <div class="terminal">
+              <div class="terminal-line"><span class="prompt">> </span>Initializing secure ML ops pipeline...</div>
+              <div class="terminal-line"><span class="prompt">> </span>Loading models: Transformers | GAN | XGBoost</div>
+              <div class="terminal-line"><span class="prompt">> </span>Deploying agents: Active</div>
+              <div class="terminal-line"><span class="prompt">> </span>Mission ready.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dossier" class="dossier">
+      <h3 class="section-title">Dossiers</h3>
+      <p class="section-desc">Selected AI/ML missions — designed, executed, and deployed under stealth precision.</p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-head">
+            <h4>AI-Based Sports Analytics Platform</h4>
+            <span class="tag">Full Stack / ML</span>
+          </div>
+          <p>AI-powered web platform analyzing soccer performance using ML models to predict match outcomes and player metrics.</p>
+          <div class="card-meta">
+            <span>ReactJS • Flask • Scikit-learn • MySQL</span>
+            <a href="#" target="_blank">Repo →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h4>Sentiment Analysis on Amazon Reviews</h4>
+            <span class="tag">NLP</span>
+          </div>
+          <p>Hybrid VADER + RoBERTa sentiment model for 500K+ reviews. 94% F1-score and 40% reduced latency via ONNX quantization.</p>
+          <div class="card-meta">
+            <span>Hugging Face • PyTorch • ReactJS</span>
+            <a href="#" target="_blank">Repo →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h4>Smart Travel Planner - Multi Agent System</h4>
+            <span class="tag">RAG / Gemini API</span>
+          </div>
+          <p>Full-stack AI travel planner leveraging Google Gemini API and Retrieval-Augmented Generation to generate smart itineraries.</p>
+          <div class="card-meta">
+            <span>Flask • ReactJS • RAG • Gemini API</span>
+            <a href="https://github.com/yashas144/Smart_Travel_Planner" target="_blank">Repo →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h4>GAN Image Synthesis</h4>
+            <span class="tag">Generative AI</span>
+          </div>
+          <p>GAN and VAE implementation for image synthesis, published research at IJSREM for AI-driven creative generation.</p>
+          <div class="card-meta">
+            <span>TensorFlow • PyTorch • Stable Diffusion</span>
+            <a href="https://ijsrem.com/download/building-a-generative-adversarial-network-for-image-synthesis/" target="_blank">Paper →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="skills">
+      <h3 class="section-title">Skills & Tooling</h3>
+      <div class="skill-grid">
+        <div class="skill">
+          <h5>Programming</h5>
+          <p>Python · Java · C · JavaScript</p>
+        </div>
+        <div class="skill">
+          <h5>AI / ML</h5>
+          <p>Transformers · RAG · Scikit-learn · TensorFlow · PyTorch · Hugging Face</p>
+        </div>
+        <div class="skill">
+          <h5>Data Science</h5>
+          <p>Pandas · NumPy · Matplotlib · Tableau · PySpark</p>
+        </div>
+        <div class="skill">
+          <h5>Web & Cloud</h5>
+          <p>ReactJS · Flask · NodeJS · Azure · MySQL</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="missions" class="missions">
+      <h3 class="section-title">Active Missions</h3>
+      <div class="missions-list">
+        <div class="mission">
+          <div class="mission-head">
+            <h4>AI-Based Sports Analytics Platform</h4>
+            <span class="status">Active</span>
+          </div>
+          <p>End-to-end ML-driven analytics system predicting performance metrics, integrated with interactive ReactJS dashboards.</p>
+        </div>
+
+        <div class="mission">
+          <div class="mission-head">
+            <h4>Smart Travel Planner (Multi-Agent RAG)</h4>
+            <span class="status">Active</span>
+          </div>
+          <p>Developing intelligent, multi-agent travel planning system powered by Gemini API and Retrieval-Augmented Generation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h3 class="section-title">Brief the Agent</h3>
+      <p class="section-desc">Collaborate, recruit, or initiate a mission. Messages routed through secure channels.</p>
+
+      <form class="contact-form" action="mailto:yashas144@gmail.com" method="post" enctype="text/plain">
+        <input name="name" placeholder="Your name" required />
+        <input name="email" placeholder="Your email" type="email" required />
+        <textarea name="message" rows="5" placeholder="Mission details or message" required></textarea>
+        <div class="contact-actions">
+          <button type="submit" class="btn primary">Send Brief</button>
+          <a class="btn ghost" href="YashasResumeSep2025.pdf" target="_blank">Download Resume</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Yashas Chandra Bathini — Secret Agent of Software · AI/ML</div>
+    <div class="links">
+      <a href="https://github.com/yashas144" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/yashas-chandra-bathini" target="_blank">LinkedIn</a>
+      <a href="mailto:yashas144@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Typed lines (main hero)
+    const lines = [
+      "AI-powered. ML-enabled. Mission-ready.",
+      "Building intelligent data systems.",
+      "Deploying deep learning pipelines.",
+      "Integrating RAG & Gemini AI agents."
+    ];
+    let i = 0, j = 0, current = '', isDeleting = false;
+    const el = document.getElementById('typed');
+    function tick() {
+      const full = lines[i];
+      if (!isDeleting) current = full.slice(0, ++j);
+      else current = full.slice(0, j--);
+      el.textContent = current;
+      if (!isDeleting && current === full) setTimeout(()=>isDeleting=true, 800);
+      else if (isDeleting && current === '') { isDeleting=false; i=(i+1)%lines.length; }
+      setTimeout(tick, isDeleting?40:80);
+    }
+    tick();
+
+    // --- Terminal Intro Script ---
+    const terminalLines = [
+      "Initializing secure console...",
+      "Verifying agent credentials...",
+      "Identity confirmed: Agent YASHAS (Codename OBSIDIAN)",
+      "Establishing encrypted link to HQ...",
+      "Decrypting mission dossiers...",
+      "AI/ML systems online.",
+      "Access granted.",
+    ];
+    const termEl = document.getElementById('terminal-text');
+    const enterBtn = document.getElementById('enter-btn');
+    let idx = 0;
+    function typeTerminal() {
+      if (idx < terminalLines.length) {
+        termEl.innerHTML += "> " + terminalLines[idx] + "\\n";
+        idx++;
+        setTimeout(typeTerminal, 800);
+      } else {
+        enterBtn.style.opacity = 1;
+        enterBtn.focus();
+      }
+    }
+    typeTerminal();
+    enterBtn.addEventListener('click', () => {
+      document.body.classList.add('loaded');
+      setTimeout(() => {
+        document.getElementById('terminal-overlay').remove();
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yash — Secret Agent Software Engineer (AI/ML)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="profile.jpg" />
+  <meta name="description" content="Yash (Yashas Chandra Bathini) — Secret Agent building software applications with AI & ML integration. Portfolio, projects, skills and contact." />
 </head>
 <body>
   <div class="bg-scan"></div>
@@ -212,7 +535,7 @@
     tick();
   </script>
 </body>
-</html>
+</html> -->
 
 
 
@@ -497,6 +820,7 @@
   </main>
 </body>
 </html> -->
+
 
 
 
