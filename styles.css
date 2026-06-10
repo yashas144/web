@@ -514,6 +514,9 @@ p { color: var(--muted); font-weight: 300; }
 .tag-active { background: rgba(52, 211, 153, 0.12); color: var(--accent3); border: 1px solid rgba(52,211,153,0.2); }
 .tag-complete { background: rgba(94, 234, 212, 0.1); color: var(--accent); border: 1px solid rgba(94,234,212,0.18); }
 .tag-research { background: rgba(129, 140, 248, 0.1); color: var(--accent2); border: 1px solid rgba(129,140,248,0.18); }
+.tag-company { background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid rgba(255,255,255,0.09); }
+
+.project-tags { display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center; }
 
 .project-icon { font-size: 1.5rem; }
 
@@ -814,4 +817,198 @@ p { color: var(--muted); font-weight: 300; }
   .stat-div { display: none; }
   .hero-cta { flex-direction: column; }
   .hero-cta .btn { text-align: center; justify-content: center; }
+}
+
+/* ===================================================
+   3D INTERACTIONS, EFFECTS & POLISH
+   =================================================== */
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), #f0abfc);
+  z-index: 200;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(94, 234, 212, 0.5);
+}
+
+/* Hero terminal mouse-parallax wrapper */
+.terminal-wrap {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(.22,1,.36,1);
+  will-change: transform;
+}
+
+/* 3D tilt + cursor spotlight on cards */
+.project-card, .skill-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease-out, border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  will-change: transform;
+}
+.project-card::before, .skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(560px circle at var(--mx, 50%) var(--my, 50%),
+                              rgba(94, 234, 212, 0.22),
+                              transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.project-card:hover::before, .skill-card:hover::before { opacity: 1; }
+.project-card > *, .skill-card > * { position: relative; z-index: 1; }
+
+/* Magnetic buttons */
+.magnetic {
+  transition: transform 0.28s cubic-bezier(.22,1,.36,1);
+  will-change: transform;
+}
+
+/* Animated hero gradient text */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.gradient-sweep {
+  background-size: 250% 250%;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+/* Hover lift on the other glass cards for cohesion */
+.timeline-card, .edu-card, .cert-card, .about-facts {
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1), border-color 0.35s, box-shadow 0.35s;
+  will-change: transform;
+}
+.timeline-card:hover, .edu-card:hover, .cert-card:hover, .about-facts:hover {
+  transform: translateY(-3px);
+  border-color: rgba(94, 234, 212, 0.18);
+  box-shadow: 0 28px 70px rgba(0,0,0,0.4), 0 0 0 1px rgba(94, 234, 212, 0.06);
+}
+
+/* ===== TECH-STACK MARQUEE ===== */
+.marquee-section {
+  padding: 3rem 0;
+}
+.marquee {
+  overflow: hidden;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--panel-border);
+  border-bottom: 1px solid var(--panel-border);
+  background: linear-gradient(90deg, rgba(94, 234, 212, 0.04), rgba(129, 140, 248, 0.04));
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee-scroll 38s linear infinite;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.marquee-track > span {
+  color: var(--text);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 3rem;
+}
+.marquee-track > span::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(94, 234, 212, 0.4);
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ===== SECTION DOT NAVIGATION ===== */
+.section-dots {
+  position: fixed;
+  right: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  z-index: 90;
+}
+.section-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.section-dot::after {
+  content: attr(data-label);
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text);
+  background: rgba(10, 18, 35, 0.92);
+  border: 1px solid var(--panel-border);
+  padding: 0.32rem 0.7rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s cubic-bezier(.22,1,.36,1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+.section-dot:hover {
+  background: var(--accent);
+  transform: scale(1.5);
+}
+.section-dot:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+.section-dot.active {
+  background: var(--accent);
+  transform: scale(1.6);
+  box-shadow: 0 0 14px rgba(94, 234, 212, 0.7);
+}
+@media (max-width: 1020px) {
+  .section-dots { display: none; }
+}
+
+/* Accessibility: respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-terminal,
+  .gradient-sweep,
+  .brand-ping::before,
+  .status-dot,
+  .marquee-track { animation: none !important; }
 }

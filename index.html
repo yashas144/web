@@ -14,6 +14,7 @@
 </head>
 <body>
 
+  <div class="scroll-progress" id="scroll-progress"></div>
   <canvas id="bg-canvas"></canvas>
   <div class="noise-overlay"></div>
 
@@ -90,6 +91,7 @@
         </div>
       </div>
 
+      <div class="terminal-wrap">
       <aside class="hero-terminal reveal-up" style="--delay:0.2s">
         <div class="terminal-bar">
           <span class="t-dot red"></span>
@@ -121,6 +123,7 @@
           <span>Actively exploring opportunities</span>
         </div>
       </aside>
+      </div>
     </section>
 
     <section id="about" class="container section">
@@ -153,17 +156,20 @@
 
         <article class="project-card project-featured reveal-up">
           <div class="project-header">
-            <div class="project-tag tag-active">06/2025 &ndash; 06/2026</div>
+            <div class="project-tags">
+              <div class="project-tag tag-active">06/2025 &ndash; 06/2026</div>
+              <div class="project-tag tag-company">Sysarket</div>
+            </div>
             <span class="project-icon">&#127981;</span>
           </div>
           <h3>Auravance &mdash; The Future of Industrial Foresight</h3>
-          <p>AI-powered predictive maintenance and industrial automation platform that senses equipment failures before they happen, helping factories run smarter, longer, and with less interruption.</p>
+          <p>Predictive maintenance platform that forecasts equipment failures from real-time IoT sensor streams, giving plant operators lead time on downtime events instead of post-mortems.</p>
           <ul class="project-bullets">
-            <li>Building a full-stack AI platform using <strong>React</strong> and <strong>FastAPI</strong> for real-time equipment monitoring and failure prediction.</li>
-            <li>Using <strong>XGBoost</strong> and <strong>LSTM</strong> models to improve failure detection accuracy by 30%.</li>
-            <li>Developing a <strong>RAG-based root cause analysis</strong> system over equipment manuals for explainable diagnostics.</li>
-            <li>Designing RUL prediction and <strong>Isolation Forest</strong> anomaly detection to reduce downtime risk.</li>
-            <li>Engineering scalable real-time IoT data pipelines with <strong>MQTT</strong> and Python to ingest, process, and store high-frequency sensor telemetry for anomaly detection, predictive forecasting, and operational insights.</li>
+            <li>Owned the end-to-end ML stack: <strong>XGBoost</strong> classifier for failure events plus <strong>LSTM</strong> for remaining-useful-life forecasting &mdash; lifted detection accuracy <strong>30%</strong> over the rules-based baseline.</li>
+            <li>Chose a hybrid <strong>XGBoost + Isolation Forest</strong> design over a single deep model so previously unseen anomaly types still surface without a full retrain.</li>
+            <li>Built a <strong>RAG</strong> layer over equipment service manuals so every alert ships with a cited root-cause suggestion, not just a black-box risk score.</li>
+            <li>Designed the real-time ingestion path &mdash; <strong>MQTT</strong> &rarr; FastAPI &rarr; time-series store &mdash; sized for high-frequency sensor telemetry without back-pressure.</li>
+            <li>Shipped the <strong>React</strong> operator console for live monitoring, forecast review, and explainable alerts.</li>
           </ul>
           <div class="chip-row">
             <span>React</span><span>FastAPI</span><span>Python</span><span>XGBoost</span><span>LSTM</span><span>RAG</span><span>MQTT</span><span>Isolation Forest</span>
@@ -172,17 +178,20 @@
 
         <article class="project-card project-featured project-music reveal-up" style="--delay:0.1s">
           <div class="project-header">
-            <div class="project-tag tag-complete">07/2024 &ndash; 05/2025</div>
+            <div class="project-tags">
+              <div class="project-tag tag-complete">07/2024 &ndash; 05/2025</div>
+              <div class="project-tag tag-company">Sysarket</div>
+            </div>
             <span class="project-icon">&#127925;</span>
           </div>
           <h3>AI-Powered Music Intelligence Platform</h3>
-          <p>AI music recommendation platform using Hybrid-RAG across 500K+ songs to enable context-aware discovery by mood, genre, and user intent.</p>
+          <p>Recommendation engine over a <strong>500K-song</strong> catalog that surfaces tracks by mood, genre, and natural-language intent &mdash; built on a Hybrid-RAG retrieval stack.</p>
           <ul class="project-bullets">
-            <li>Designed and delivered a <strong>Hybrid-RAG</strong> recommendation system combining BM25 keyword retrieval and vector search.</li>
-            <li>Architected an embedding-based retrieval and ranking pipeline to improve recommendation relevance and reduce noisy outputs.</li>
-            <li>Integrated LLM-driven explainability to improve user trust and transparency in recommendations.</li>
-            <li>Engineered real-time features including mood detection and seamless playback.</li>
-            <li>Deployed a cloud-native full-stack system using <strong>React</strong> and <strong>FastAPI</strong> on Azure and Hugging Face with CI/CD pipelines.</li>
+            <li>Fused <strong>BM25</strong> keyword search with <strong>FAISS</strong> vector retrieval &mdash; BM25 alone missed semantic mood queries, vectors alone over-fired on irrelevant matches; the hybrid cut noisy recommendations.</li>
+            <li>Designed the embedding + reranking pipeline that turns the 500K-track catalog into sub-second context-aware results.</li>
+            <li>Layered an <strong>LLM-driven explanation</strong> step so each recommendation comes with a why &mdash; closing the black-box trust gap users hit with vector-only systems.</li>
+            <li>Shipped real-time mood detection and seamless playback in the <strong>React + FastAPI</strong> client.</li>
+            <li>Containerized and deployed the full stack to <strong>Azure</strong> and <strong>Hugging Face</strong> with CI/CD.</li>
           </ul>
           <div class="chip-row">
             <span>Hybrid RAG</span><span>BM25</span><span>Vector Search</span><span>FAISS</span><span>LLM Integration</span><span>FastAPI</span><span>React</span><span>Azure</span><span>Hugging Face</span><span>CI/CD</span>
@@ -191,16 +200,19 @@
 
         <article class="project-card reveal-up" style="--delay:0.05s">
           <div class="project-header">
-            <div class="project-tag tag-complete">Work Project</div>
+            <div class="project-tags">
+              <div class="project-tag tag-complete">Work Project</div>
+              <div class="project-tag tag-company">Sysarket</div>
+            </div>
             <span class="project-icon">&#9917;</span>
           </div>
           <h3>AI-Based Sports Analytics Platform</h3>
-          <p>Sports analytics platform with ML-based match predictions, APIs, dashboards, model tracking, and production-oriented deployment.</p>
+          <p>Match-prediction platform pairing ML models with analyst-facing dashboards &mdash; built for production from the model registry on down.</p>
           <ul class="project-bullets">
-            <li>Developed ML-based match prediction capabilities, APIs, and analytics dashboards.</li>
-            <li>Improved model accuracy by <strong>18%</strong> using feature engineering, hyperparameter tuning, and MLflow tracking.</li>
-            <li>Implemented model registry, versioning, and monitoring for performance, confidence, and feature drift.</li>
-            <li>Deployed a containerized full-stack application using React, Flask, Docker, Azure, and Azure SQL DB.</li>
+            <li>Lifted prediction accuracy <strong>18%</strong> through feature engineering and hyperparameter tuning, with every iteration logged in <strong>MLflow</strong> for reproducibility.</li>
+            <li>Stood up the MLflow <strong>model registry</strong>, versioning, and drift monitoring &mdash; performance, confidence, and feature drift all tracked in production.</li>
+            <li>Built the prediction APIs and the <strong>React + Flask</strong> dashboards consuming them.</li>
+            <li>Deployed the containerized stack on <strong>Azure</strong> with <strong>Azure SQL DB</strong> as the analytics backing store.</li>
           </ul>
           <div class="chip-row">
             <span>Python</span><span>React</span><span>Flask</span><span>MLflow</span><span>Docker</span><span>Azure</span><span>Azure SQL DB</span>
@@ -209,21 +221,32 @@
 
         <article class="project-card reveal-up" style="--delay:0.1s">
           <div class="project-header">
-            <div class="project-tag tag-research">Research</div>
+            <div class="project-tags">
+              <div class="project-tag tag-research">Research</div>
+              <div class="project-tag tag-company">Sysarket</div>
+            </div>
             <span class="project-icon">&#128444;&#65039;</span>
           </div>
           <h3>Deep Learning-Based Image Synthesis with GAN Architecture</h3>
-          <p>Generative AI research project focused on GAN-based image synthesis systems using PyTorch and TensorFlow.</p>
+          <p>Applied GAN research targeting image-synthesis fidelity &mdash; architecture and training-loop tuning to push output quality for downstream use cases.</p>
           <ul class="project-bullets">
-            <li>Developed GAN-based image synthesis systems and improved output quality through architecture tuning and training optimization.</li>
-            <li>Contributed to applied generative AI research for real-world applications and publication-ready experimentation.</li>
-            <li>Collaborated in agile teams to deliver scalable ML solutions and optimize end-to-end training pipelines.</li>
+            <li>Tuned generator and discriminator architecture plus training schedule; quality gains tracked against held-out fidelity metrics.</li>
+            <li>Optimized the end-to-end training pipeline in <strong>PyTorch</strong> and <strong>TensorFlow</strong> so longer experiments stayed within compute budget.</li>
+            <li>Translated research findings into publication-ready experiments alongside the cross-functional ML team.</li>
           </ul>
           <div class="chip-row">
             <span>PyTorch</span><span>TensorFlow</span><span>GANs</span><span>Deep Learning</span><span>Neural Networks</span><span>Generative AI</span>
           </div>
         </article>
 
+      </div>
+    </section>
+
+    <section class="marquee-section" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>Python</span><span>FastAPI</span><span>React</span><span>LangChain</span><span>FAISS</span><span>PyTorch</span><span>TensorFlow</span><span>Azure</span><span>AWS</span><span>LLM &amp; RAG</span><span>Hybrid Search</span><span>BM25</span><span>Vector DB</span><span>XGBoost</span><span>LSTM</span><span>MLflow</span><span>Docker</span><span>Hugging Face</span><span>Generative AI</span><span>MQTT</span><span>Isolation Forest</span><span>Agentic AI</span><span>Python</span><span>FastAPI</span><span>React</span><span>LangChain</span><span>FAISS</span><span>PyTorch</span><span>TensorFlow</span><span>Azure</span><span>AWS</span><span>LLM &amp; RAG</span><span>Hybrid Search</span><span>BM25</span><span>Vector DB</span><span>XGBoost</span><span>LSTM</span><span>MLflow</span><span>Docker</span><span>Hugging Face</span><span>Generative AI</span><span>MQTT</span><span>Isolation Forest</span><span>Agentic AI</span>
+        </div>
       </div>
     </section>
 
@@ -373,6 +396,14 @@
 
   </main>
 
+  <nav class="section-dots" aria-label="Section navigation">
+    <button class="section-dot" data-target="about" data-label="About"></button>
+    <button class="section-dot" data-target="projects" data-label="Projects"></button>
+    <button class="section-dot" data-target="experience" data-label="Experience"></button>
+    <button class="section-dot" data-target="skills" data-label="Skills"></button>
+    <button class="section-dot" data-target="contact" data-label="Contact"></button>
+  </nav>
+
   <footer class="site-footer">
     <div class="container footer-inner">
       <span>&copy; <span id="yr"></span> Yashas Chandra Bathini</span>
@@ -385,12 +416,204 @@
     </div>
   </footer>
 
+  <script type="module">
+    // 3D hero scene (Three.js) — skipped on reduced-motion preference
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      try {
+        const THREE = await import('https://unpkg.com/three@0.160.0/build/three.module.js');
+
+        const canvas = document.getElementById('bg-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 22;
+
+        // Ambient drifting particle haze (background atmosphere)
+        const N = 200;
+        const positions = new Float32Array(N * 3);
+        const velocities = [];
+        for (let i = 0; i < N; i++) {
+          positions[i*3]   = (Math.random() - 0.5) * 42;
+          positions[i*3+1] = (Math.random() - 0.5) * 28;
+          positions[i*3+2] = (Math.random() - 0.5) * 28;
+          velocities.push({
+            x: (Math.random() - 0.5) * 0.008,
+            y: (Math.random() - 0.5) * 0.008,
+            z: (Math.random() - 0.5) * 0.008,
+          });
+        }
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const pointsMat = new THREE.PointsMaterial({
+          color: 0x67e8f9, size: 0.06, transparent: true, opacity: 0.45, sizeAttenuation: true
+        });
+        scene.add(new THREE.Points(geo, pointsMat));
+
+        // ===== Semantic 3D embedding scatterplot =====
+        // Each cluster represents a domain Yashas works in.
+        // Points are samples from a Gaussian around the centroid; lines connect
+        // each point to its 2 nearest neighbors within the same cluster (KNN graph).
+        const clusters = [
+          { name: 'LLM · RAG',     center: [-7,  5,  0], color: 0x67e8f9, hex: '#67e8f9', count: 14, spread: 1.7 },
+          { name: 'Predictive ML',     center: [ 7,  3, -1], color: 0x34d399, hex: '#34d399', count: 12, spread: 1.6 },
+          { name: 'Full-Stack',        center: [ 0, -4,  2], color: 0x818cf8, hex: '#818cf8', count: 11, spread: 1.7 },
+          { name: 'Cloud · DevOps', center: [ 8, -1,  1], color: 0xf0abfc, hex: '#f0abfc', count: 10, spread: 1.5 },
+          { name: 'Generative AI',     center: [-7, -1, -2], color: 0xfbbf24, hex: '#fbbf24', count: 10, spread: 1.6 }
+        ];
+
+        const embeddingGroup = new THREE.Group();
+
+        function gauss() {
+          // Box-Muller approximation, clipped — gives tighter cluster look than uniform
+          let u = 0, v = 0;
+          while (u === 0) u = Math.random();
+          while (v === 0) v = Math.random();
+          return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v) * 0.5;
+        }
+
+        function makeLabelSprite(text, hex) {
+          const canvas = document.createElement('canvas');
+          canvas.width = 512;
+          canvas.height = 128;
+          const ctx = canvas.getContext('2d');
+          ctx.font = 'bold 44px "JetBrains Mono", ui-monospace, monospace';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.lineWidth = 8;
+          ctx.strokeStyle = 'rgba(3, 7, 15, 0.85)';
+          ctx.strokeText(text, 256, 64);
+          ctx.fillStyle = hex;
+          ctx.fillText(text, 256, 64);
+          const tex = new THREE.CanvasTexture(canvas);
+          tex.minFilter = THREE.LinearFilter;
+          const mat = new THREE.SpriteMaterial({
+            map: tex, transparent: true, opacity: 0.65, depthWrite: false
+          });
+          const sprite = new THREE.Sprite(mat);
+          sprite.scale.set(5, 1.25, 1);
+          return sprite;
+        }
+
+        clusters.forEach((cl) => {
+          // Generate points around the centroid
+          const pts = [];
+          for (let i = 0; i < cl.count; i++) {
+            pts.push([
+              cl.center[0] + gauss() * cl.spread,
+              cl.center[1] + gauss() * cl.spread,
+              cl.center[2] + gauss() * cl.spread
+            ]);
+          }
+
+          // Render points as a Points cloud (one per cluster for distinct color)
+          const flat = new Float32Array(pts.length * 3);
+          pts.forEach((p, i) => { flat[i*3] = p[0]; flat[i*3+1] = p[1]; flat[i*3+2] = p[2]; });
+          const pGeo = new THREE.BufferGeometry();
+          pGeo.setAttribute('position', new THREE.BufferAttribute(flat, 3));
+          const pMat = new THREE.PointsMaterial({
+            color: cl.color, size: 0.28, transparent: true, opacity: 0.95, sizeAttenuation: true
+          });
+          embeddingGroup.add(new THREE.Points(pGeo, pMat));
+
+          // KNN edges within the cluster (k=2)
+          const edgeVerts = [];
+          for (let i = 0; i < pts.length; i++) {
+            const dists = [];
+            for (let j = 0; j < pts.length; j++) {
+              if (i === j) continue;
+              const dx = pts[i][0] - pts[j][0];
+              const dy = pts[i][1] - pts[j][1];
+              const dz = pts[i][2] - pts[j][2];
+              dists.push({ j, d: dx*dx + dy*dy + dz*dz });
+            }
+            dists.sort((a, b) => a.d - b.d);
+            for (let k = 0; k < Math.min(2, dists.length); k++) {
+              const nb = pts[dists[k].j];
+              edgeVerts.push(pts[i][0], pts[i][1], pts[i][2], nb[0], nb[1], nb[2]);
+            }
+          }
+          const lGeo = new THREE.BufferGeometry();
+          lGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(edgeVerts), 3));
+          const lMat = new THREE.LineBasicMaterial({
+            color: cl.color, transparent: true, opacity: 0.28
+          });
+          embeddingGroup.add(new THREE.LineSegments(lGeo, lMat));
+
+          // Floating label above the cluster
+          const label = makeLabelSprite(cl.name, cl.hex);
+          label.position.set(cl.center[0], cl.center[1] + cl.spread + 1.2, cl.center[2]);
+          embeddingGroup.add(label);
+        });
+
+        scene.add(embeddingGroup);
+
+        let mx = 0, my = 0;
+        window.addEventListener('mousemove', (e) => {
+          mx = (e.clientX / window.innerWidth) * 2 - 1;
+          my = (e.clientY / window.innerHeight) * 2 - 1;
+        });
+
+        window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        let running = true;
+        document.addEventListener('visibilitychange', () => {
+          running = document.visibilityState === 'visible';
+        });
+
+        function tick() {
+          if (running) {
+            const pos = geo.attributes.position.array;
+            for (let i = 0; i < N; i++) {
+              pos[i*3]   += velocities[i].x;
+              pos[i*3+1] += velocities[i].y;
+              pos[i*3+2] += velocities[i].z;
+              if (Math.abs(pos[i*3])   > 19) velocities[i].x *= -1;
+              if (Math.abs(pos[i*3+1]) > 12) velocities[i].y *= -1;
+              if (Math.abs(pos[i*3+2]) > 12) velocities[i].z *= -1;
+            }
+            geo.attributes.position.needsUpdate = true;
+
+            // Slowly orbit the entire embedding cloud — like spinning a UMAP plot
+            embeddingGroup.rotation.y += 0.0012;
+            embeddingGroup.rotation.x = Math.sin(Date.now() * 0.00012) * 0.12;
+
+            camera.position.x += (mx * 4 - camera.position.x) * 0.030;
+            camera.position.y += (-my * 2.5 - camera.position.y) * 0.030;
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+          }
+          requestAnimationFrame(tick);
+        }
+        tick();
+      } catch (err) {
+        console.warn('3D background skipped:', err);
+      }
+    }
+  </script>
+
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Scroll progress bar
+    const progress = document.getElementById('scroll-progress');
+    function updateProgress() {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (progress) progress.style.width = pct + '%';
+    }
 
     const header = document.getElementById('site-header');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 20);
+      updateProgress();
     });
 
     const ham = document.getElementById('hamburger');
@@ -432,56 +655,79 @@
     }, { threshold: 0.3 });
     if (heroSection) statsObserver.observe(heroSection);
 
-    (function() {
-      const canvas = document.getElementById('bg-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let W, H, particles = [];
-
-      function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-      resize();
-      window.addEventListener('resize', resize);
-
-      class Particle {
-        constructor() { this.reset(); }
-        reset() {
-          this.x = Math.random() * W; this.y = Math.random() * H;
-          this.r = Math.random() * 1.2 + 0.3;
-          this.vx = (Math.random() - 0.5) * 0.15; this.vy = (Math.random() - 0.5) * 0.15;
-          this.alpha = Math.random() * 0.45 + 0.08;
-          this.color = Math.random() > 0.5 ? '103,232,249' : '139,92,246';
-        }
-        update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset(); }
-        draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(${this.color},${this.alpha})`; ctx.fill(); }
-      }
-
-      for (let i = 0; i < 80; i++) particles.push(new Particle());
-
-      function drawConnections() {
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            if (dist < 90) {
-              ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(103,232,249,${0.05 * (1 - dist/90)})`; ctx.lineWidth = 0.5; ctx.stroke();
-            }
-          }
-        }
-      }
-
-      function loop() { ctx.clearRect(0, 0, W, H); particles.forEach(p => { p.update(); p.draw(); }); drawConnections(); requestAnimationFrame(loop); }
-      loop();
-    })();
-
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
+    const sectionDots = document.querySelectorAll('.section-dot');
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
       navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+      sectionDots.forEach(d => { d.classList.toggle('active', d.dataset.target === current); });
     });
+
+    // Section-dot click navigation
+    sectionDots.forEach(d => {
+      d.addEventListener('click', () => {
+        const target = document.getElementById(d.dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // ===== Interactive 3D effects (skipped on reduced-motion) =====
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+
+      // 3D tilt + cursor spotlight on cards
+      function attachTiltSpotlight(card, maxTilt) {
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width;
+          const py = (e.clientY - r.top) / r.height;
+          const rx = (py - 0.5) * -maxTilt;
+          const ry = (px - 0.5) * maxTilt;
+          card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+          card.style.setProperty('--mx', (px * 100) + '%');
+          card.style.setProperty('--my', (py * 100) + '%');
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      }
+      document.querySelectorAll('.project-card').forEach(c => attachTiltSpotlight(c, 10));
+      document.querySelectorAll('.skill-card').forEach(c => attachTiltSpotlight(c, 12));
+
+      // Magnetic buttons
+      function attachMagnet(btn, strength) {
+        btn.addEventListener('mousemove', (e) => {
+          const r = btn.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width / 2) * strength;
+          const y = (e.clientY - r.top - r.height / 2) * strength;
+          btn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = '';
+        });
+      }
+      document.querySelectorAll('.btn-primary, .btn-outline, .btn-lg').forEach(b => {
+        b.classList.add('magnetic');
+        attachMagnet(b, 0.30);
+      });
+
+      // Hero terminal mouse parallax
+      const terminalWrap = document.querySelector('.terminal-wrap');
+      const heroSec = document.querySelector('.hero');
+      if (terminalWrap && heroSec) {
+        heroSec.addEventListener('mousemove', (e) => {
+          const r = heroSec.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          terminalWrap.style.transform = `rotateY(${px * 10}deg) rotateX(${-py * 7}deg)`;
+        });
+        heroSec.addEventListener('mouseleave', () => {
+          terminalWrap.style.transform = '';
+        });
+      }
+    }
   </script>
 </body>
 </html>
