@@ -15,7 +15,6 @@
 <body>
 
   <div class="scroll-progress" id="scroll-progress"></div>
-  <canvas id="bg-canvas"></canvas>
   <div class="noise-overlay"></div>
 
   <header class="site-header" id="site-header">
@@ -65,7 +64,7 @@
       <div class="hero-copy reveal-up">
         <div class="hero-badge">
           <span class="badge-dot"></span>
-          <span>Available &middot; F-1 OPT Eligible From July 2026</span>
+          <span>Available &middot; F-1 OPT | Authorized to Work in the U.S.</span>
         </div>
         <h1>Building <span class="gradient-sweep">intelligent</span><br><span class="hero-h1-muted">software systems</span> that ship.</h1>
         <p class="hero-sub">AI/ML Engineer with 4+ years of experience designing and deploying Agentic AI systems, LLM-powered applications, MLOps pipelines, distributed microservices, and cloud-native platforms. Experienced in autonomous AI agents, Retrieval-Augmented Generation (RAG), real-time analytics, scalable API architectures, and high-performance AI apps serving mission-critical business operations.</p>
@@ -109,7 +108,7 @@
           <div class="fact-item"><span class="fact-icon">&#128205;</span><div><span class="fact-label">Location</span><strong>Denton, Texas</strong></div></div>
           <div class="fact-item"><span class="fact-icon">&#9993;&#65039;</span><div><span class="fact-label">Email</span><strong>yashas144@gmail.com</strong></div></div>
           <div class="fact-item"><span class="fact-icon">&#127891;</span><div><span class="fact-label">Education</span><strong>MS Data Science &middot; UNT</strong></div></div>
-          <div class="fact-item"><span class="fact-icon">&#128706;</span><div><span class="fact-label">Visa</span><strong>F-1 OPT Eligible From July 2026</strong></div></div>
+          <div class="fact-item"><span class="fact-icon">&#128706;</span><div><span class="fact-label">Work Authorization</span><strong>F-1 OPT | Authorized to Work in the U.S.</strong></div></div>
           <div class="fact-item"><span class="fact-icon">&#9889;</span><div><span class="fact-label">Specialties</span><strong>Agentic AI &middot; LLM &amp; RAG Systems &middot; MLOps &middot; Microservices &middot; Cloud-Native</strong></div></div>
           <a href="https://linkedin.com/in/yashas-chandra-bathini" target="_blank" class="btn btn-primary full-width">Connect on LinkedIn</a>
         </div>
@@ -404,189 +403,6 @@
       </div>
     </div>
   </footer>
-
-  <script type="module">
-    // 3D hero scene (Three.js) — skipped on reduced-motion preference
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      try {
-        const THREE = await import('https://unpkg.com/three@0.160.0/build/three.module.js');
-
-        const canvas = document.getElementById('bg-canvas');
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.z = 22;
-
-        // Ambient drifting particle haze (background atmosphere)
-        const N = 200;
-        const positions = new Float32Array(N * 3);
-        const velocities = [];
-        for (let i = 0; i < N; i++) {
-          positions[i*3]   = (Math.random() - 0.5) * 42;
-          positions[i*3+1] = (Math.random() - 0.5) * 28;
-          positions[i*3+2] = (Math.random() - 0.5) * 28;
-          velocities.push({
-            x: (Math.random() - 0.5) * 0.008,
-            y: (Math.random() - 0.5) * 0.008,
-            z: (Math.random() - 0.5) * 0.008,
-          });
-        }
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const pointsMat = new THREE.PointsMaterial({
-          color: 0x475569, size: 0.06, transparent: true, opacity: 0.45, sizeAttenuation: true
-        });
-        scene.add(new THREE.Points(geo, pointsMat));
-
-        // ===== Semantic 3D embedding scatterplot =====
-        // Each cluster represents a domain Yashas works in.
-        // Points are samples from a Gaussian around the centroid; lines connect
-        // each point to its 2 nearest neighbors within the same cluster (KNN graph).
-        const clusters = [
-          { name: 'LLM · RAG',     center: [-7,  5,  0], color: 0x0d9488, hex: '#0d9488', count: 14, spread: 1.7 },
-          { name: 'Predictive ML',     center: [ 7,  3, -1], color: 0x059669, hex: '#059669', count: 12, spread: 1.6 },
-          { name: 'Full-Stack',        center: [ 0, -4,  2], color: 0x6d28d9, hex: '#6d28d9', count: 11, spread: 1.7 },
-          { name: 'Cloud · DevOps', center: [ 8, -1,  1], color: 0xc026d3, hex: '#c026d3', count: 10, spread: 1.5 },
-          { name: 'Generative AI',     center: [-7, -1, -2], color: 0xd97706, hex: '#d97706', count: 10, spread: 1.6 }
-        ];
-
-        const embeddingGroup = new THREE.Group();
-
-        function gauss() {
-          // Box-Muller approximation, clipped — gives tighter cluster look than uniform
-          let u = 0, v = 0;
-          while (u === 0) u = Math.random();
-          while (v === 0) v = Math.random();
-          return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v) * 0.5;
-        }
-
-        function makeLabelSprite(text, hex) {
-          const canvas = document.createElement('canvas');
-          canvas.width = 512;
-          canvas.height = 128;
-          const ctx = canvas.getContext('2d');
-          ctx.font = 'bold 44px "JetBrains Mono", ui-monospace, monospace';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.lineWidth = 6;
-          ctx.strokeStyle = 'rgba(251, 247, 236, 0.95)';
-          ctx.strokeText(text, 256, 64);
-          ctx.fillStyle = hex;
-          ctx.fillText(text, 256, 64);
-          const tex = new THREE.CanvasTexture(canvas);
-          tex.minFilter = THREE.LinearFilter;
-          const mat = new THREE.SpriteMaterial({
-            map: tex, transparent: true, opacity: 0.75, depthWrite: false
-          });
-          const sprite = new THREE.Sprite(mat);
-          sprite.scale.set(5, 1.25, 1);
-          return sprite;
-        }
-
-        clusters.forEach((cl) => {
-          // Generate points around the centroid
-          const pts = [];
-          for (let i = 0; i < cl.count; i++) {
-            pts.push([
-              cl.center[0] + gauss() * cl.spread,
-              cl.center[1] + gauss() * cl.spread,
-              cl.center[2] + gauss() * cl.spread
-            ]);
-          }
-
-          // Render points as a Points cloud (one per cluster for distinct color)
-          const flat = new Float32Array(pts.length * 3);
-          pts.forEach((p, i) => { flat[i*3] = p[0]; flat[i*3+1] = p[1]; flat[i*3+2] = p[2]; });
-          const pGeo = new THREE.BufferGeometry();
-          pGeo.setAttribute('position', new THREE.BufferAttribute(flat, 3));
-          const pMat = new THREE.PointsMaterial({
-            color: cl.color, size: 0.28, transparent: true, opacity: 0.95, sizeAttenuation: true
-          });
-          embeddingGroup.add(new THREE.Points(pGeo, pMat));
-
-          // KNN edges within the cluster (k=2)
-          const edgeVerts = [];
-          for (let i = 0; i < pts.length; i++) {
-            const dists = [];
-            for (let j = 0; j < pts.length; j++) {
-              if (i === j) continue;
-              const dx = pts[i][0] - pts[j][0];
-              const dy = pts[i][1] - pts[j][1];
-              const dz = pts[i][2] - pts[j][2];
-              dists.push({ j, d: dx*dx + dy*dy + dz*dz });
-            }
-            dists.sort((a, b) => a.d - b.d);
-            for (let k = 0; k < Math.min(2, dists.length); k++) {
-              const nb = pts[dists[k].j];
-              edgeVerts.push(pts[i][0], pts[i][1], pts[i][2], nb[0], nb[1], nb[2]);
-            }
-          }
-          const lGeo = new THREE.BufferGeometry();
-          lGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(edgeVerts), 3));
-          const lMat = new THREE.LineBasicMaterial({
-            color: cl.color, transparent: true, opacity: 0.28
-          });
-          embeddingGroup.add(new THREE.LineSegments(lGeo, lMat));
-
-          // Floating label above the cluster
-          const label = makeLabelSprite(cl.name, cl.hex);
-          label.position.set(cl.center[0], cl.center[1] + cl.spread + 1.2, cl.center[2]);
-          embeddingGroup.add(label);
-        });
-
-        scene.add(embeddingGroup);
-
-        let mx = 0, my = 0;
-        window.addEventListener('mousemove', (e) => {
-          mx = (e.clientX / window.innerWidth) * 2 - 1;
-          my = (e.clientY / window.innerHeight) * 2 - 1;
-        });
-
-        window.addEventListener('resize', () => {
-          camera.aspect = window.innerWidth / window.innerHeight;
-          camera.updateProjectionMatrix();
-          renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        let running = true;
-        document.addEventListener('visibilitychange', () => {
-          running = document.visibilityState === 'visible';
-        });
-
-        function tick() {
-          if (running) {
-            const pos = geo.attributes.position.array;
-            for (let i = 0; i < N; i++) {
-              pos[i*3]   += velocities[i].x;
-              pos[i*3+1] += velocities[i].y;
-              pos[i*3+2] += velocities[i].z;
-              if (Math.abs(pos[i*3])   > 19) velocities[i].x *= -1;
-              if (Math.abs(pos[i*3+1]) > 12) velocities[i].y *= -1;
-              if (Math.abs(pos[i*3+2]) > 12) velocities[i].z *= -1;
-            }
-            geo.attributes.position.needsUpdate = true;
-
-            // Slowly orbit the entire embedding cloud — like spinning a UMAP plot
-            embeddingGroup.rotation.y += 0.0012;
-            embeddingGroup.rotation.x = Math.sin(Date.now() * 0.00012) * 0.12;
-
-            camera.position.x += (mx * 4 - camera.position.x) * 0.030;
-            camera.position.y += (-my * 2.5 - camera.position.y) * 0.030;
-            camera.lookAt(0, 0, 0);
-
-            renderer.render(scene, camera);
-          }
-          requestAnimationFrame(tick);
-        }
-        tick();
-      } catch (err) {
-        console.warn('3D background skipped:', err);
-      }
-    }
-  </script>
 
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
